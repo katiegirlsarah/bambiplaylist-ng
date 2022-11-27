@@ -1,0 +1,10 @@
+name = "bp-prod"
+account_id = "58a108d999123422a8ecab8beaffbac9"
+
+main = "./.cloudflare/worker.js"
+site.bucket = "./.cloudflare/public"
+
+build.command = "npm run build"
+
+compatibility_date = "2022-11-27"
+workers_dev = true

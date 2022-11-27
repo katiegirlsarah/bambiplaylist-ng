@@ -4,7 +4,7 @@ This is an overhaul of the original [https://bambiplaylist.github.io/](https://b
 
 ## Todo
 
-- [ ] Deploy to cloudflare workers
+- [x] Deploy to cloudflare workers [https://bp-prog.katiegirlsarah.workers.dev/](https://bp-prog.katiegirlsarah.workers.dev/)
 - [ ] Overhaul original site
   - [ ] Server-side audio blob streaming
   - [ ] Rewrite the frontend

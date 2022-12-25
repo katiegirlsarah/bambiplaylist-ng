@@ -31,6 +31,15 @@
   <a href="https://github.com/katiegirlsarah/bambiplaylist-ng/issues">https://github.com/katiegirlsarah/bambiplaylist-ng/issues</a>
 </p>
 
+<h2>Changelog</h2>
+
+<ul>
+  <li>
+    <h3>2.0.0-b0</h3>
+    <p>Overhaul to initial working state, start advertizing new site</p>
+  </li>
+</ul>
+
 <a id="contributors"><h2>Contributors</h2></a>
 
 <p>

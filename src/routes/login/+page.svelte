@@ -10,8 +10,10 @@
 {/if}
 
 <form method="POST" action="/login">
-	<input type="text" name="user" placeholder="Enter username..." />
-	<input type="password" name="pass" placeholder="Enter password..." />
+	<label for="user">Username</label>
+	<input type="text" name="user" required />
+	<label for="pass">Password</label>
+	<input type="password" name="pass" required />
 	<Turnstile siteKey="0x4AAAAAAABYklLBnEWMcPxZ" theme="dark" />
 	<input type="submit" value="Login" />
 </form>

@@ -10,8 +10,10 @@
 {/if}
 
 <form method="POST" action="/post">
-	<input type="text" name="title" placeholder="Enter a bambilicious title!" />
-	<textarea placeholer="What's on your mind?" />
+	<label for="title">title</label>
+	<input type="text" name="title" required />
+	<label for="post">post</label>
+	<textarea name="post" required />
 	<Turnstile siteKey="0x4AAAAAAABYklLBnEWMcPxZ" theme="dark" />
 	<input type="submit" value="post" />
 </form>

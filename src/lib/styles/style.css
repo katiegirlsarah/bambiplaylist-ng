@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Lora";
+  src: url('/Lora-Regular.ttf');
+}
+
+* {
+  font-family: Lora;
+}
+
+body {
+  background-color: pink;
+  color: #312;
+}
+
+main {
+  margin: 5vw;
+}

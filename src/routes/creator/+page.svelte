@@ -1,7 +1,9 @@
 <script>
   export let data;
   
-  let files = data.files;
+  let files = JSON.parse(data.files);
 </script>
 
-{#each file as 
+{#each files as file}
+  <p>{file}</p>
+{/each}

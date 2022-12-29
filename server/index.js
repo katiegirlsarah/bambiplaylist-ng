@@ -38,6 +38,10 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/files', (req, res) => {
+  res.send(JSON.stringify(names))
+})
+
 app.listen(port, () => {
   console.log(`Listening on port ${port}`)
 })

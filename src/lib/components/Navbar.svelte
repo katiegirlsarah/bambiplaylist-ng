@@ -4,6 +4,9 @@
   <nav>
     <ul>
       <li>
+        <a href="/creator">creator</a>
+      </li>
+      <li>
         <a href="/playlist">playlists</a>
       </li>
       <li>

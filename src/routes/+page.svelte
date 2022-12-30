@@ -1,3 +1,8 @@
+<script>
+  import PageTransition from '$lib/components/PageTransition.svelte';
+</script>
+
+<PageTransition>
 <h2>Home</h2>
 
 <p>
@@ -54,3 +59,4 @@
   <li>indigoxindica</li>
   <li>LockedInBambi</li>
 </ul>
+</PageTransition>

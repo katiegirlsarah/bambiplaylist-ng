@@ -1,9 +1,12 @@
 <script>
+  import PageTransition from '$lib/components/PageTransition.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 
 	/** @type {import('./$types').ActionData} */
 	export let form;
 </script>
+
+<PageTransition>
 
 {#if form?.error}
 	<p>{form?.error}</p>
@@ -17,3 +20,5 @@
 	<Turnstile siteKey="0x4AAAAAAABYklLBnEWMcPxZ" theme="dark" />
 	<input type="submit" value="Login" />
 </form>
+
+</PageTransition>

@@ -20,7 +20,7 @@ label {
   font-size: 1vw;
 }
 
-input, textarea, iframe, label {
+input, button, textarea, iframe, label {
   width: 40%;
   display: block;
   margin: auto;
@@ -28,7 +28,7 @@ input, textarea, iframe, label {
   margin-bottom: 0.2vw;
 }
 
-input, textarea, iframe {
+input, button, textarea, iframe {
   margin-bottom: 2vw;
   padding: 0.4vw;
   

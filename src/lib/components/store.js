@@ -1,4 +1,15 @@
-import { writable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
+
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(){}[]\\|;:\'"<>,./?';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+export const jwt_sig_store = readable(makeid(2048));
 
 export const url = writable('');
-export const jwt_sig_store = writable('');

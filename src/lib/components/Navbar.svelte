@@ -1,3 +1,22 @@
+<script>
+  import { browser } from '$app/environment'; 
+  import { onMount } from 'svelte';
+
+  let user = '';
+  if(browser) {
+    onMount(async () => {
+      console.log(user == '');
+      let cookies = document.cookie.split(';')
+      let jwt = cookies[0].split('=')[1];
+
+      let decoded_jwt = atob(jwt.split('.')[1])
+      let parsed_jwt = JSON.parse(decoded_jwt)
+      
+      user = parsed_jwt.user;
+    })
+  }
+</script>
+
 <header>
   <a href="/">bambi playlist</a>
 
@@ -13,7 +32,11 @@
         <a href="/post">post</a>
       </li>
       <li>
+        {#if user == ''}
         <a href="/login">login</a>
+        {:else}
+        Welcome, {user}
+        {/if}
       </li>
     </ul>
   </nav>

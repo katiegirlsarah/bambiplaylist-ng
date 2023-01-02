@@ -101,12 +101,11 @@ export const actions = {
 			sameSite: 'strict'
 		})
 		
-		return {
-			status: 200,
-			headers: {
-				'set-cookie': 's=1; Max-Age=1200; Path=/; SameSite=Strict'
-			}
-		}
+	  let jwt_token = jwt.sign({ user: user }, jwt_sig, {
+		  expiresIn: "30m"
+	  });
+
+		throw redirect('307', `/logged?jwt=${jwt_token}`)
 	},
 	register: async({ request }) => {
 		throw redirect('307', '/')

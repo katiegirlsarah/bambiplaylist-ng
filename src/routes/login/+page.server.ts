@@ -29,12 +29,12 @@ const devSetKvValue = (key: string, value: unknown) => {
     })
 }
 
-export const getKvValue = async (key: string): Promise<string | null> => {
-    return dev ? await devGetKvValue(key) : await KV.get(key)
+export const getKvValue = async (key: string, kv: KVNamespace): Promise<string | null> => {
+    return dev ? await devGetKvValue(key) : await kv.get(key)
 }
 
-export const setKvValue = async (key: string, value: unknown): Promise<void> => {
-    return dev ? await devSetKvValue(key, value) : await KV.put(key, value)
+export const setKvValue = async (key: string, value: unknown, kv: KVNamespace): Promise<void> => {
+    return dev ? await devSetKvValue(key, value) : await kv.put(key, value)
 }
 
 interface TokenValidateResponse {
@@ -68,7 +68,7 @@ async function validateToken(token: string, secret: string) {
 }
 
 export const actions = {
-	login: async ({ request, cookies }) => {
+	login: async ({ request, cookies, platform }) => {
 		const data = await request.formData();
 
 		const token = data.get('cf-turnstile-response'); // if you edited the formsField option change this
@@ -86,10 +86,10 @@ export const actions = {
 		let pass = data.get('pass');
 		
 	  try {
-			let cmp = await getKvValue(user);
+			let cmp = await getKvValue(user, platform?.env.BP_DB);
 			let result = sha256(pass) === cmp;
 			if (!result) {
-			  throw new Error();
+		    return { error: 'invalid username/password' };
 			}
 	  } catch {
 	    return { error: 'invalid username/password' };

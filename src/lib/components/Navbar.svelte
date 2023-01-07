@@ -5,14 +5,17 @@
   let user = '';
   if(browser) {
     onMount(async () => {
-      console.log(user == '');
-      let cookies = document.cookie.split(';')
-      let jwt = cookies[0].split('=')[1];
+      try {
+        let cookies = document.cookie.split(';')
+        let jwt = cookies[0].split('=')[1];
 
-      let decoded_jwt = atob(jwt.split('.')[1])
-      let parsed_jwt = JSON.parse(decoded_jwt)
-      
-      user = parsed_jwt.user;
+        let decoded_jwt = atob(jwt.split('.')[1])
+        let parsed_jwt = JSON.parse(decoded_jwt)
+
+        user = parsed_jwt.user;
+      } catch (e) {
+        console.warn('[warn] jwt failed to parse on clientside');
+      }
     })
   }
 </script>

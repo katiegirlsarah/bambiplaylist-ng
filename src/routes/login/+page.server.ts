@@ -4,7 +4,6 @@ import * as jose from 'jose';
 import { jwt_sig_store } from '$lib/components/store.js';
 import { redirect, error } from '@sveltejs/kit';
 
-const saltRounds = 10;
 let jwt_sig;
 const alg = 'HS256';
 

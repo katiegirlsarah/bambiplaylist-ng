@@ -1,7 +1,7 @@
 import { CF_SECRET_KEY } from '$env/static/private';
 import sha256 from '$lib/components/sha256.js';
 import * as jose from 'jose';
-import { jwt_sig_store } from '$lib/components/store.js';
+import { jwt_sig_store, makeid } from '$lib/components/store.js';
 import { redirect, error } from '@sveltejs/kit';
 
 let jwt_sig: string;
@@ -13,7 +13,7 @@ jwt_sig_store.subscribe((value) => {
 
 import { dev } from '$app/environment';
 
-let devKvStore = { katie: '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' };
+let devKvStore = { katie: 'asd$55422ef75fb65485e715b11aa6d2997189e70c2bfb3538ecbddadec7bf13a707' };
 
 const devGetKvValue = (key: string) => {
 	return new Promise((resolve) => {
@@ -85,7 +85,9 @@ export const actions = {
 
 		try {
 			let cmp = await getKvValue(user, platform?.env.BP_DB);
-			let result = sha256(pass) === cmp;
+			let salt = cmp.split('$')[0];
+			let hash = cmp.split('$')[1];
+			let result = sha256(pass + salt) === hash;
 			if (!result) {
 				return { error: 'invalid username/password' };
 			}
@@ -120,7 +122,8 @@ export const actions = {
 		let exists = (await getKvValue(user, platform?.env.BP_DB)) !== null;
 		if (exists) return { error: 'user exists' };
 
-		let newPw = sha256(pass);
+		let salt = makeid(10);
+		let newPw = salt + '$' + sha256(pass + salt);
 		await setKvValue(user, newPw, platform?.env.BP_DB);
 
 		const jwt_token = await new jose.SignJWT({ user: user })

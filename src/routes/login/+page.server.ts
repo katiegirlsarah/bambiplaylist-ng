@@ -14,7 +14,7 @@ jwt_sig_store.subscribe(value => {
 
 import { dev } from '$app/environment'
 
-const devKvStore = { 'katie': '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' }
+let devKvStore = { 'katie': '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' }
 
 const devGetKvValue = (key: string) => {
     return new Promise((resolve) => {
@@ -24,7 +24,7 @@ const devGetKvValue = (key: string) => {
 
 const devSetKvValue = (key: string, value: unknown) => {
     return new Promise((resolve) => {
-        devKvStore[key] = JSON.stringify(value)
+        devKvStore[key] = value
         resolve()
     })
 }
@@ -81,7 +81,6 @@ export const actions = {
 				error: error || 'Invalid CAPTCHA'
 			};
 
-		// do something, the captcha is valid!
 		let user = data.get('user');
 		let pass = data.get('pass');
 		
@@ -99,7 +98,31 @@ export const actions = {
 
 		throw redirect('307', `/logged?jwt=${jwt_token}`)
 	},
-	register: async({ request }) => {
-		throw redirect('307', '/')
+	register: async({ request, platform }) => {
+		const data = await request.formData();
+
+		const token = data.get('cf-turnstile-response'); // if you edited the formsField option change this
+		const SECRET_KEY = CF_SECRET_KEY; // you should use $env module for secrets
+
+		const { success, error } = await validateToken(token, SECRET_KEY);
+
+		if (!success)
+			return {
+				error: error || 'Invalid CAPTCHA'
+			};
+
+		let user = data.get('user');
+		let pass = data.get('pass');
+		
+		let exists = await getKvValue(user, platform?.env.BP_DB) !== null;
+		if (exists)
+			return { error: 'user exists' }
+		
+		let newPw = sha256(pass)
+		await setKvValue(user, newPw, platform?.env.BP_DB);
+
+	  const jwt_token = await new jose.SignJWT({ 'user': user }).setProtectedHeader({ alg }).setIssuedAt().setExpirationTime('7d').sign(new TextEncoder().encode(jwt_sig))
+		
+		throw redirect('307', `/logged?jwt=${jwt_token}`)
 	}
 };

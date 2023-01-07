@@ -11,7 +11,7 @@ jwt_sig_store.subscribe(value => {
 
 export const handle = async({ event, resolve }) => {
   const url = new URL(event.request.url).pathname;
-  const whitelist = url.startsWith('/login') || url.startsWith('/logged') || url === '/';
+  const whitelist = url.startsWith('/login') || url.startsWith('/logged') || url.startsWith('/playlist') || url === '/';
   
   if (whitelist)
     return resolve(event)

@@ -14,4 +14,4 @@ This is an overhaul of the original [https://bambiplaylist.github.io/](https://b
   - [ ] Bambi playlist collaborative roulette
   - [ ] More social media-like feel
     - [ ] Posting
-    - [ ] Accounts
+    - [x] Accounts

@@ -68,7 +68,7 @@ async function validateToken(token: string, secret: string) {
 }
 
 export const actions = {
-	login: async ({ request, cookies, platform }) => {
+	login: async ({ request, platform }) => {
 		const data = await request.formData();
 
 		const token = data.get('cf-turnstile-response'); // if you edited the formsField option change this
@@ -94,13 +94,6 @@ export const actions = {
 	  } catch {
 	    return { error: 'invalid username/password' };
 	  }
-		
-		cookies.set('s', 1, {
-			path: '/',
-			HttpOnly: false,
-			maxAge: 60 * 60 * 24 * 7,
-			sameSite: 'strict'
-		})
 		
 	  const jwt_token = await new jose.SignJWT({ 'user': user }).setProtectedHeader({ alg }).setIssuedAt().setExpirationTime('7d').sign(new TextEncoder().encode(jwt_sig))
 

@@ -11,7 +11,6 @@ app.get('/', (req, res) => {
   let files = req.query.p.split(',').map(x => path.join(__dirname, `files/${names[parseInt(x - 1)]}.mp3`))
   files = files.map(x => Buffer.from(fs.readFileSync(x)))
   files = Buffer.concat(files)
-  console.log(files)
   
   const audioBlob = new Blob([files], {type: 'audio/mpeg'})
   

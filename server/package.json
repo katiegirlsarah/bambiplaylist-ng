@@ -1,22 +1,22 @@
 {
-  "name": "bp-server",
-  "version": "1.0.0",
-  "description": "Audio streaming server for bp",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/katiegirlsarah/bambiplaylist-ng.git"
-  },
-  "author": "",
-  "license": "GPL-2.0",
-  "bugs": {
-    "url": "https://github.com/katiegirlsarah/bambiplaylist-ng/issues"
-  },
-  "homepage": "https://github.com/katiegirlsarah/bambiplaylist-ng#readme",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+	"name": "bp-server",
+	"version": "1.0.0",
+	"description": "Audio streaming server for bp",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/katiegirlsarah/bambiplaylist-ng.git"
+	},
+	"author": "",
+	"license": "GPL-2.0",
+	"bugs": {
+		"url": "https://github.com/katiegirlsarah/bambiplaylist-ng/issues"
+	},
+	"homepage": "https://github.com/katiegirlsarah/bambiplaylist-ng#readme",
+	"dependencies": {
+		"express": "^4.18.2"
+	}
 }

@@ -1,37 +1,44 @@
 @font-face {
-  font-family: "Lora";
-  src: url('/Lora-Regular.ttf');
+	font-family: 'Lora';
+	src: url('/Lora-Regular.ttf');
 }
 
 * {
-  font-family: Lora;
+	font-family: Lora;
 }
 
 body {
-  background-color: pink;
-  color: #312;
+	background-color: pink;
+	color: #312;
 }
 
 main {
-  margin: 5vw;
+	margin: 5vw;
 }
 
 label {
-  font-size: 1vw;
+	font-size: 1vw;
 }
 
-input, button, textarea, iframe, label {
-  width: 40%;
-  display: block;
-  margin: auto;
-  
-  margin-bottom: 0.2vw;
+input,
+button,
+textarea,
+iframe,
+label {
+	width: 40%;
+	display: block;
+	margin: auto;
+
+	margin-bottom: 0.2vw;
 }
 
-input, button, textarea, iframe {
-  margin-bottom: 2vw;
-  padding: 0.4vw;
-  
-  border: 2px solid #fde;
-  border-radius: 2px;
+input,
+button,
+textarea,
+iframe {
+	margin-bottom: 2vw;
+	padding: 0.4vw;
+
+	border: 2px solid #fde;
+	border-radius: 2px;
 }

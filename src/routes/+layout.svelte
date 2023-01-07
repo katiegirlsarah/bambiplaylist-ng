@@ -1,12 +1,10 @@
 <script>
-  import Navbar from '$lib/components/Navbar.svelte';
-  import '$lib/styles/style.css';
-  
-  
+	import Navbar from '$lib/components/Navbar.svelte';
+	import '$lib/styles/style.css';
 </script>
 
 <Navbar />
 
 <main>
-  <slot/>
+	<slot />
 </main>

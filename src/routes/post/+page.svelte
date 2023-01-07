@@ -1,5 +1,5 @@
 <script>
-  import PageTransition from '$lib/components/PageTransition.svelte';
+	import PageTransition from '$lib/components/PageTransition.svelte';
 	import { Turnstile } from 'svelte-turnstile';
 
 	/** @type {import('./$types').ActionData} */
@@ -7,17 +7,16 @@
 </script>
 
 <PageTransition>
+	{#if form?.error}
+		<p>{form?.error}</p>
+	{/if}
 
-{#if form?.error}
-	<p>{form?.error}</p>
-{/if}
-
-<form method="POST" action="/post">
-	<label for="title">title</label>
-	<input type="text" name="title" required />
-	<label for="post">post</label>
-	<textarea name="post" required />
-	<Turnstile siteKey="0x4AAAAAAABYklLBnEWMcPxZ" theme="dark" />
-	<input type="submit" value="post" />
-</form>
+	<form method="POST" action="/post">
+		<label for="title">title</label>
+		<input type="text" name="title" required />
+		<label for="post">post</label>
+		<textarea name="post" required />
+		<Turnstile siteKey="0x4AAAAAAABYklLBnEWMcPxZ" theme="dark" />
+		<input type="submit" value="post" />
+	</form>
 </PageTransition>

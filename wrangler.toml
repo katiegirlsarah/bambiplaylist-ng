@@ -8,3 +8,7 @@ build.command = "npm run build"
 
 compatibility_date = "2022-11-27"
 workers_dev = true
+
+kv_namespaces = [
+  { binding = "BP_DB", preview_id = "e629ff8337aa4de0964126648496d220", id = "e629ff8337aa4de0964126648496d220" }
+]

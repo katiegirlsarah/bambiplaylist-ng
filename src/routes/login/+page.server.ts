@@ -1,11 +1,12 @@
 import { CF_SECRET_KEY } from '$env/static/private';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import sha256 from '$lib/components/sha256.js';
+import * as jose from 'jose';
 import { jwt_sig_store } from '$lib/components/store.js';
 import { redirect, error } from '@sveltejs/kit';
 
 const saltRounds = 10;
 let jwt_sig;
+const alg = 'HS256';
 
 jwt_sig_store.subscribe(value => {
 	jwt_sig = value;
@@ -13,7 +14,7 @@ jwt_sig_store.subscribe(value => {
 
 import { dev } from '$app/environment'
 
-const devKvStore = { 'katie': '$2b$10$qBqNQEVG5hiGHx1ZeXw0Y.fFh3NwctvH/pLXNvzfHgJuSMkuHIMxq' }
+const devKvStore = { 'katie': '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4' }
 
 const devGetKvValue = (key: string) => {
     return new Promise((resolve) => {
@@ -86,7 +87,7 @@ export const actions = {
 		
 	  try {
 			let cmp = await getKvValue(user);
-			let result = await bcrypt.compare(pass, cmp);
+			let result = sha256(pass) === cmp;
 			if (!result) {
 			  throw new Error();
 			}
@@ -101,9 +102,7 @@ export const actions = {
 			sameSite: 'strict'
 		})
 		
-	  let jwt_token = jwt.sign({ user: user }, jwt_sig, {
-		  expiresIn: "30m"
-	  });
+	  const jwt_token = await new jose.SignJWT({ 'user': user }).setProtectedHeader({ alg }).setIssuedAt().setExpirationTime('7d').sign(new TextEncoder().encode(jwt_sig))
 
 		throw redirect('307', `/logged?jwt=${jwt_token}`)
 	},

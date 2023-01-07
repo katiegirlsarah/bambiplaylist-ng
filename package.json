@@ -27,7 +27,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bcrypt": "^5.1.0",
-		"jsonwebtoken": "^9.0.0"
+		"jose": "^4.11.2"
 	}
 }

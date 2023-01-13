@@ -16,6 +16,7 @@ export const handle = async ({ event, resolve }) => {
 		url.startsWith('/logged') ||
 		url.startsWith('/creator') ||
 		url.startsWith('/playlist') ||
+		url.startsWith('/about') ||
 		url === '/';
 
 	if (whitelist) return resolve(event);

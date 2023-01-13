@@ -32,7 +32,7 @@
 				<a href="/playlist">playlists</a>
 			</li>
 			<li>
-				<a href="/post">post</a>
+				<a href="/about">about</a>
 			</li>
 			<li>
 				{#if user == ''}

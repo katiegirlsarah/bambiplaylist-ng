@@ -21,7 +21,7 @@
 </script>
 
 <header>
-	<a href="/">bambi playlist</a>
+	<a href="/">LOGO GOES HERE</a>
 
 	<nav>
 		<ul>
@@ -38,7 +38,7 @@
 				{#if user == ''}
 					<a href="/login">login</a>
 				{:else}
-					Welcome, {user}
+					<a href="/logged?jwt=null">logout</a>
 				{/if}
 			</li>
 		</ul>
